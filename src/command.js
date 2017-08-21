@@ -36,7 +36,8 @@ MM.Command.Redo.execute = function() {
 
 MM.Command.InsertSibling = Object.create(MM.Command, {
 	label: {value: "Insert a sibling"},
-	keys: {value: [{keyCode: 13}]}
+	keys: {value: [{keyCode: 13}]},
+	editMode: {value: null}
 });
 MM.Command.InsertSibling.execute = function() {
 	var item = MM.App.current;
@@ -59,12 +60,13 @@ MM.Command.InsertChild = Object.create(MM.Command, {
 	keys: {value: [
 		{keyCode: 9, ctrlKey:false},
 		{keyCode: 45}
-	]}
+	]},
+	editMode: {value: null}
 });
 MM.Command.InsertChild.execute = function() {
 	var item = MM.App.current;
 	var action = new MM.Action.InsertNewItem(item, item.getChildren().length);
-	MM.App.action(action);	
+	MM.App.action(action);
 
 	MM.Command.Edit.execute();
 
